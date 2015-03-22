@@ -1,5 +1,3 @@
-setwd('C:/Users/Dan/Documents/dataset')
-
 ## The assignment deals with 5 stages or tasks to be considered complete: 
 
 ## Task 1: Merges the training and the test sets to create one data set.

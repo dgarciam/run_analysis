@@ -92,7 +92,7 @@ for (numS in 1:numSubjects) {
     results[row, 1] = uniqueSubjects[numS]
     results[row, 2] = activities[numA, 2]
     tmp <- cuteData[cuteData$subject==numS & cuteData$activityname==activities[numA, 2], ]
-    results[row, 4:numCols] <- colMeans(tmp[, 4:numCols])
+    results[row, 3:numCols] <- colMeans(tmp[, 3:numCols])
     row = row+1
   }
 }

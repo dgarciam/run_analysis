@@ -69,6 +69,9 @@ featureIndex = c(1, 563, 564, featureIndex) #Adding the first and last two colum
 cuteData = allData[,featureIndex]
 names(cuteData) = gsub("\\(|\\)", "", names(cuteData))
 names(cuteData) = tolower(names(cuteData))
+cuteData$activityid = NULL
+cuteData = cuteData[order(cuteData$subject,cuteData$activityname),]
+row.names(cuteData) = NULL
 
 write.table(cuteData,"tidy_up_data.txt")
 
@@ -77,19 +80,19 @@ write.table(cuteData,"tidy_up_data.txt")
 
 uniqueSubjects = unique(cuteData$subject)
 numSubjects = length(uniqueSubjects)
-activities <- read.table("activity_labels.txt")
+activities = read.table("activity_labels.txt")
 numActivities = length(unique(cuteData$activityname))
 numCols = dim(cuteData)[2]
 
-result = cuteData[1:(numSubjects*numActivities), ] #Extract the first Subject
+results = cuteData[1:(numSubjects*numActivities), ] #Extract the first Subject
 
 row = 1
 for (numS in 1:numSubjects) {
   for (numA in 1:numActivities) {
-    result[row, 1] = uniqueSubjects[numS]
-    result[row, 2] = activities[numA, 2]
+    results[row, 1] = uniqueSubjects[numS]
+    results[row, 2] = activities[numA, 2]
     tmp <- cuteData[cuteData$subject==numS & cuteData$activityname==activities[numA, 2], ]
-    result[row, 4:numCols] <- colMeans(tmp[, 4:numCols])
+    results[row, 4:numCols] <- colMeans(tmp[, 4:numCols])
     row = row+1
   }
 }

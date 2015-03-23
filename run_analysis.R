@@ -99,7 +99,7 @@ for (numS in 1:numSubjects) {
 results = results[order(results$subject,results$activityname),]
 row.names(results) = NULL
 results$activityname = tolower(results$activityname)
-write.table(result, "merged_averages.txt")
+write.table(results, "merged_averages.txt")
 
 
 

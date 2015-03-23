@@ -96,6 +96,9 @@ for (numS in 1:numSubjects) {
     row = row+1
   }
 }
+results = results[order(results$subject,results$activityname),]
+row.names(results) = NULL
+results$activityname = tolower(results$activityname)
 write.table(result, "merged_averages.txt")
 
 
